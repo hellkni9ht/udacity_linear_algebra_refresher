@@ -1,1 +1,2 @@
-# udacity_linear_algebra_refresher
+# Udacity : Linear Algebra Refresher
+Programming Assignments
