@@ -69,6 +69,21 @@ def projecting_vectors():
     b = Vector(['6.404', '-9.144', '2.759', '8.718'])
     print("{0} = {1} + {2}\n".format(v, v.component_parallel_to(b), v.component_orthogonal_to(b)))
 
-#dot_product_and_angle()
-#parallel_and_orthogonal_vectors()
-projecting_vectors()
+# Quiz: Cross Products
+def cross_products():
+    v = Vector(['8.462', '7.893', '-8.187'])
+    w = Vector(['6.984', '-5.975', '4.778'])
+    print("{0} cross {1} is {2} \n".format(v, w, v.cross_product(w)))
+
+    v = Vector(['-8.987', '-9.838', '5.031'])
+    w = Vector(['-4.268', '-1.861', '-8.866'])
+    print("area of parallelogram spanned by {0} and {1} is {2}\n".format(v, w, v.area_of_parallelogram_with(w)))
+    
+    v = Vector(['1.5', '9.547', '3.691'])
+    w = Vector(['-6.007', '0.124', '5.772'])
+    print("area of triangle spanned by {0} and {1} is {2}\n".format(v, w, v.area_of_triangle_with(w)))
+
+# dot_product_and_angle()
+# parallel_and_orthogonal_vectors()
+# projecting_vectors()
+cross_products()

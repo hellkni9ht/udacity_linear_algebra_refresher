@@ -10,6 +10,7 @@ class Vector(object):
     CANNOT_NORMILIZE_ZERO_VECTOR_MSG = 'Can not normilize the zero vector'
     NO_UNIQUE_PARALLEL_COMPONENT_MSG = 'No unique parallel component'
     NO_UNIQUE_ORTHOGONAL_COMPONENT_MSG = 'No unique orthogonal component'
+    CANNOT_COMPUTE_CROSS_PRODUCT_MSG = 'Can not compute cross product: only defined in two or three dimentions'
 
     def __init__(self, coordinates):
         try:
@@ -98,3 +99,26 @@ class Vector(object):
                 raise Exception(self.NO_UNIQUE_PARALLEL_COMPONENT_MSG)
             else:
                 raise e
+
+    def cross_product(self, v):
+        try:
+            x1, y1, z1 = self.coordinates
+            x2, y2, z2 = v.coordinates
+
+            new_coordinates = [y1 * z2 - y2 * z1, -(x1 * z2 - x2 * z1), x1 * y2 - x2 * y1]
+            return Vector(new_coordinates)
+        except Exception as e:
+            if msg == 'need more than 2 values to unpack':
+                self_embedded = Vector(self.coordinates + ('0'))
+                v_embedded = Vector(v.coordinates + ('0'))
+                return self_embedded.cross_product(v_embedded)
+            elif msg == 'too many values to unpack' or msg == 'need more than one value to unpack':
+                raise Exception(self.CANNOT_COMPUTE_CROSS_PRODUCT_MSG)
+            else:
+                raise e
+
+    def area_of_triangle_with(self, v):
+        return self.cross_product(v).magnitude() / Decimal('2.0')
+
+    def area_of_parallelogram_with(self, v):
+        return self.cross_product(v).magnitude()
