@@ -27,12 +27,12 @@ class Line(object):
         try:
             n = self.normal_vector
             c = self.constant_term
-            basepoint_coords = ['0']*self.dimension
+            basepoint_coords = ['0'] * self.dimension
 
             initial_index = Line.first_nonzero_index(n)
             initial_coefficient = n[initial_index]
 
-            basepoint_coords[initial_index] = c/initial_coefficient
+            basepoint_coords[initial_index] = c / initial_coefficient
             self.basepoint = Vector(basepoint_coords)
 
         except Exception as e:
@@ -87,6 +87,43 @@ class Line(object):
 
         return output
 
+    def __eq__(self, line):
+        if self.normal_vector.is_zero():
+            if not line.normal_vector().is_zero():
+                return False
+            else:
+                diff = self.constant_term - line.constant_term
+                return MyDecimal(diff).is_near_zero()
+        elif line.normal_vector.is_zero():
+            return False
+
+        if not self.is_parallel_with(line):
+            return False
+
+        basepoint_diffrence = self.basepoint.minus(line.basepoint)
+        return self.normal_vector.is_orthogonal_with(basepoint_diffrence)
+
+    def is_parallel_with(self, line):
+        return self.normal_vector.is_parallel_with(line.normal_vector)
+            
+    def intersection_with(self, line):
+        try:
+            A, B = self.normal_vector.coordinates
+            C, D = line.normal_vector.coordinates
+            k1 = self.constant_term
+            k2 = line.constant_term
+
+            x = Decimal(D * k1 - B * k2)
+            y = Decimal(-C * k1 + A * k2)
+            one_over_denominator = 1 / (A * D - B * C)
+
+            return Vector([x, y]).times_scalar(one_over_denominator)
+
+        except ZeroDivisionError as e:
+            if self == line:
+                return self
+            else:
+                return None
 
     @staticmethod
     def first_nonzero_index(iterable):

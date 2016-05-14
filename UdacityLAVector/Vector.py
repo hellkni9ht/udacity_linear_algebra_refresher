@@ -33,6 +33,15 @@ class Vector(object):
     def __eq__(self, v):
         return self.coordinates == v.coordinates
 
+    def __iter__(self):
+        return iter(self.coordinates)
+
+    def __getitem__(self, index):
+        return self.coordinates[index]
+
+    def __setitem__(self, index, value):
+        self.coordinates[index] = value
+
     def plus(self, v):
         new_coordinates = [sc + c for sc, c in zip(self.coordinates, v.coordinates)]
         return Vector(new_coordinates)

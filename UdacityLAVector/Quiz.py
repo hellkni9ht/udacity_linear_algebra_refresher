@@ -1,7 +1,7 @@
 from Vector import Vector
+from Line import Line
 
 # Quiz: Coding Magnitude & Direction
-
 def magnitude_and_direction():
     v = Vector([-0.221, 7.437])
     print("magnitude is {0}".format(v.magnitude()))
@@ -83,7 +83,22 @@ def cross_products():
     w = Vector(['-6.007', '0.124', '5.772'])
     print("area of triangle spanned by {0} and {1} is {2}\n".format(v, w, v.area_of_triangle_with(w)))
 
+# Quiz: Intersection of Lines in 2D
+def intersection_of_lines_in_2D():
+    l1 = Line(normal_vector = Vector(['4.046', '2.836']), constant_term = '1.21')
+    l2 = Line(normal_vector = Vector(['10.115', '7.09']), constant_term = '3.025')
+    print("{0} intersects with {1} in ".format(l1, l2) + str(l1.intersection_with(l2)))
+
+    l1 = Line(Vector(['7.204', '3.182']), '8.68')
+    l2 = Line(Vector(['8.172', '4.114']), '9.883')
+    print("{0} intersects with {1} in ".format(l1, l2) + str(l1.intersection_with(l2)))
+
+    l1 = Line(Vector(['1.182', '5.562']), '6.744')
+    l2 = Line(Vector(['1.773', '8.343']), '9.525')
+    print("{0} intersects with {1} in ".format(l1, l2) + str(l1.intersection_with(l2)))
+
 # dot_product_and_angle()
 # parallel_and_orthogonal_vectors()
 # projecting_vectors()
-cross_products()
+# cross_products()
+intersection_of_lines_in_2D()
