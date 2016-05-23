@@ -24,6 +24,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Line.py" />
+    <Compile Include="Plane.py" />
     <Compile Include="Quiz.py" />
     <e Include="Vector.py">
       <SubType>Code</SubType>

@@ -1,5 +1,6 @@
 from Vector import Vector
 from Line import Line
+from Plane import Plane
 
 # Quiz: Coding Magnitude & Direction
 def magnitude_and_direction():
@@ -97,8 +98,34 @@ def intersection_of_lines_in_2D():
     l2 = Line(Vector(['1.773', '8.343']), '9.525')
     print("{0} intersects with {1} in ".format(l1, l2) + str(l1.intersection_with(l2)))
 
+# Quiz: Planes in 3 Dimensions
+def planes_in_3D_print_outcomes(p1, p2):
+    str = "{0} and {1} are ".format(p1, p2)
+    if p1 == p2:
+        str += "equal"
+    elif p1.is_parallel_with(p2):
+        str += "parallel but unequal"
+    else:
+        str += "not parallel"
+    print(str)
+
+def planes_in_3D():
+    p1 = Plane(normal_vector = Vector(['-0.412', '3.806', '0.728']), constant_term = '-3.46')
+    p2 = Plane(normal_vector = Vector(['1.03', '-9.515', '-1.82']), constant_term = '8.65')
+    planes_in_3D_print_outcomes(p1, p2)
+
+    p1 = Plane(normal_vector = Vector(['2.611', '5.528', '0.283']), constant_term = '4.6')
+    p2 = Plane(normal_vector = Vector(['7.715', '8.306', '5.342']), constant_term = '3.76')
+    planes_in_3D_print_outcomes(p1, p2)
+
+    p1 = Plane(normal_vector = Vector(['-7.926', '8.625', '-7.212']), constant_term = '-7.952')
+    p2 = Plane(normal_vector = Vector(['-2.642', '2.875', '-2.404']), constant_term = '-2.443')
+    planes_in_3D_print_outcomes(p1, p2)
+
+
 # dot_product_and_angle()
 # parallel_and_orthogonal_vectors()
 # projecting_vectors()
 # cross_products()
-intersection_of_lines_in_2D()
+# intersection_of_lines_in_2D()
+planes_in_3D()
